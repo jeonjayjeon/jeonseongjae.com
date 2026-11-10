@@ -1,0 +1,19 @@
+name: Fetch site assets from Wix
+on:
+  workflow_dispatch:
+  push:
+    paths: [".github/workflows/fetch-assets.yml"]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash download-assets.sh
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          git diff --cached --quiet || git commit -m "Add images, video, icons and fonts downloaded from Wix"
+          git push
