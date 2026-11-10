@@ -4,7 +4,7 @@
 # Run once from this folder:  bash download-assets.sh
 set -e
 cd "$(dirname "$0")"
-mkdir -p assets/img/album assets/video assets/icons assets/fonts
+mkdir -p _originals/album assets/video assets/icons assets/fonts
 
 get() {  # url  dest
   if [ -s "$2" ]; then echo "skip  $2"; return; fi

@@ -55,7 +55,7 @@
   function show(i) {
     idx = i;
     var it = items[i];
-    lbImg.src = it.querySelector('img').getAttribute('src');
+    lbImg.src = it.getAttribute('data-full') || it.querySelector('img').getAttribute('src');
     lbCap.textContent = it.querySelector('.g-info').textContent;
     prev.hidden = i === 0;
     next.hidden = i === items.length - 1;

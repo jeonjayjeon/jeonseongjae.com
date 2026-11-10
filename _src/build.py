@@ -269,10 +269,10 @@ def album(lang):
     items = json.loads((ROOT / "album.json").read_text())
     out = []
     for it in items:
-        f = it["f"].replace("~mv2", "")
+        stem = it["f"].replace("~mv2", "").rsplit(".", 1)[0]
         cap = html.escape(it[lang])
-        out.append(f'<figure class="g-item" data-ratio="{it["h"]/590:.6f}" style="margin:0">'
-                   f'<div class="g-img" style="aspect-ratio:590/{it["h"]}"><img src="/assets/img/album/{f}" alt="" loading="lazy"></div>'
+        out.append(f'<figure class="g-item" data-ratio="{it["h"]/590:.6f}" data-full="/assets/img/album/2200/{stem}.jpg" style="margin:0">'
+                   f'<div class="g-img" style="aspect-ratio:590/{it["h"]}"><img src="/assets/img/album/1200/{stem}.jpg" alt="" loading="lazy" decoding="async"></div>'
                    f'<figcaption class="g-info">{cap}</figcaption></figure>')
     arrow = '<svg width="15" height="27" viewBox="0 0 15 27" aria-hidden="true"><path d="M1 1l12.5 12.5L1 26" fill="none" stroke="#fff" stroke-width="1.5"/></svg>'
     xsvg = '<svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M1 1l18 18M19 1 1 19" stroke="#fff" stroke-width="1.5"/></svg>'
@@ -316,5 +316,5 @@ for lang in ("en", "ko"):
 items = json.loads((ROOT / "album.json").read_text())
 with open(OUT / "assets.txt", "w") as fh:
     for it in items:
-        fh.write(f"https://static.wixstatic.com/media/fb59a6_{it['f']} assets/img/album/{it['f'].replace('~mv2','')}\n")
+        fh.write(f"https://static.wixstatic.com/media/fb59a6_{it['f']} _originals/album/{it['f'].replace('~mv2','')}\n")
 print("built", OUT)
