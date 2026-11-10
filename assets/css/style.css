@@ -1,0 +1,135 @@
+/* jeonseongjae.com — Wix-free rebuild
+   Desktop values are measured from the live Wix site at 1280px. */
+
+@font-face { font-family: "MinGothic"; font-display: swap;
+  src: url("../fonts/mingothic.woff2") format("woff2"), url("../fonts/mingothic.woff") format("woff"); }
+@font-face { font-family: "Maison Neue Extended"; font-weight: 500; font-display: swap;
+  src: url("../fonts/maison-neue-extended-medium.woff2") format("woff2"), url("../fonts/maison-neue-extended-medium.woff") format("woff"); }
+@font-face { font-family: "SF UI Display"; font-display: swap;
+  src: url("../fonts/sf-ui-display-regular.woff2") format("woff2"), url("../fonts/sf-ui-display-regular.woff") format("woff"); }
+
+:root {
+  --helv: "Helvetica Neue", Helvetica, Arial, sans-serif;   /* Wix: helvetica-w01-roman */
+  --noto: "Noto Sans KR", sans-serif;
+  --nav: #d1d1d1;
+  --grid: 980px;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #000; color: #fff; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: var(--helv); }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+
+.grid { position: relative; width: var(--grid); margin: 0 auto; height: 100%; }
+
+/* ---------- Header ---------- */
+.site-header { position: sticky; top: 0; z-index: 50; height: 100px; }
+.nav a { position: absolute; top: 38px; height: 44px; line-height: 44px;
+  font: 17px/44px var(--helv); color: var(--nav); white-space: nowrap; }
+.nav .n-home   { left: 18px; }
+.nav .n-cv     { left: 144px; }
+.nav .n-album  { left: 227px; }
+
+.lang { position: absolute; left: 881px; top: 38px; width: 99px; }
+.lang-btn { all: unset; cursor: pointer; display: block; width: 99px; height: 44px; position: relative;
+  font: 17px/24px var(--helv); color: var(--nav); }
+.lang-btn .cur { position: absolute; left: 14px; top: 10px; }
+.lang-btn svg { position: absolute; left: 73px; top: 19px; width: 12px; height: 6px; transition: transform .2s; }
+.lang.open .lang-btn svg { transform: rotate(180deg); }
+.lang-list { display: none; margin: 0; padding: 0; list-style: none; }
+.lang.open .lang-list { display: block; }
+.lang-list a { display: block; height: 44px; padding-left: 14px; font: 17px/44px var(--helv); color: var(--nav); }
+
+/* ---------- Footer ---------- */
+.site-footer { position: sticky; bottom: 0; z-index: 40; height: 80px; background: #000; }
+.copyright { position: absolute; top: 31px; left: 0; width: var(--grid); text-align: center;
+  font: 12px/16.8px "SF UI Display", var(--helv); color: #fff; }
+
+/* ---------- Home ---------- */
+.hero { position: relative; height: 1275px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; background: #000; }
+.hero-bg video, .hero-bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.hero-bg .overlay { position: absolute; inset: 0; background: url("../img/overlay-dots.png") repeat; }
+.hero .grid { z-index: 1; }
+
+.hero h1 { position: absolute; left: 18px; top: 397px; width: 944px; margin: 0;
+  text-align: center; font-weight: 400; line-height: normal; color: #fff; }
+.hero .intro { position: absolute; left: 18px; top: 900px; width: 944px; font-size: 20px; line-height: normal; }
+.hero .contact { position: absolute; left: 18px; width: 944px; font: 20px/24px var(--helv); }
+.hero .contact a { text-decoration: underline; }
+.hero .social { position: absolute; left: 489px; display: flex; gap: 10px; }
+.hero .social a, .hero .social img { display: block; width: 20px; height: 20px; }
+
+/* KO */
+.ko .hero h1 { font-family: "MinGothic", var(--noto); font-size: 41px; }
+.ko .hero .intro { font-family: var(--noto); }
+.ko .hero .contact { top: 1004px; }
+.ko .hero .social { top: 1006px; }
+/* EN */
+.en .hero h1 { font-family: "Maison Neue Extended", var(--helv); font-weight: 500; font-size: 50px; }
+.en .hero .intro { font-family: var(--helv); }
+.en .hero .contact { top: 999px; }
+.en .hero .social { top: 1001px; }
+
+/* ---------- CV ---------- */
+.cv { padding: 0 0 10px; }
+.cv .text { margin-left: 18px; width: 944px; }
+.ko .cv .text { font: 17px/20.4px var(--noto); }
+.en .cv .text { font: 20px/24px var(--helv); }
+.cv .text u { text-decoration: underline; }
+.en .cv .text .h { font-family: "Maison Neue Extended", var(--helv); font-weight: 500; }
+.cv .text a { color: inherit; }
+
+/* ---------- Career Album ---------- */
+.album { padding-bottom: 66px; }
+.gallery { position: relative; width: calc(100% - 80px); margin: 0 40px; }
+.g-item { position: absolute; cursor: pointer; }
+.g-item img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.g-img { overflow: hidden; }
+.g-info { height: 200px; padding: 20px 15px; overflow: hidden;
+  font: 17px/21px var(--noto); color: #fff; white-space: pre-line; text-align: left; }
+
+/* Lightbox */
+.lb { position: fixed; inset: 0; z-index: 1000; background: #000; display: none; }
+.lb.open { display: block; }
+.lb-stage { position: absolute; left: 90px; right: 90px; top: 0; bottom: 183px; padding: 40px 0; }
+.lb-stage img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.lb-cap { position: absolute; left: 50%; transform: translateX(-50%); top: calc(100% - 163px); width: 700px; max-width: calc(100% - 40px);
+  max-height: 150px; overflow: auto; font: 17px/21px var(--helv); color: #fff; white-space: pre-line; }
+.lb .lb-btn { all: unset; cursor: pointer; position: absolute; color: #fff; display: flex; align-items: center; justify-content: center; }
+.lb .lb-close { right: 5px; top: 30px; width: 38px; height: 44px; }
+.lb .lb-prev, .lb .lb-next { top: calc((100% - 183px) / 2 - 25px); width: 50px; height: 50px; }
+.lb .lb-next { right: 20px; }
+.lb .lb-prev { left: 20px; }
+.lb .lb-prev svg { transform: scaleX(-1); }
+.lb .lb-btn[hidden] { display: none; }
+
+/* ---------- Narrow screens (Wix mobile layout was not reproduced 1:1) ---------- */
+@media (max-width: 999px) {
+  :root { --grid: 100%; }
+  .grid { padding: 0 20px; }
+  .site-header { height: 70px; }
+  .nav a { top: 13px; font-size: 15px; }
+  .nav .n-home { left: 20px; } .nav .n-cv { left: 105px; } .nav .n-album { left: 160px; }
+  .lang { left: auto; right: 20px; top: 13px; }
+  .hero { height: calc(100svh - 150px); min-height: 640px; }
+  .hero .grid { display: flex; flex-direction: column; justify-content: center; padding-top: 40px; padding-bottom: 40px; }
+  .hero h1, .hero .intro, .hero .contact, .hero .social { position: static; width: auto; left: auto; top: auto; }
+  .hero h1 { flex: 1; display: flex; align-items: center; justify-content: center; }
+  .ko .hero h1 { font-size: 28px; } .en .hero h1 { font-size: 30px; }
+  .hero .intro { font-size: 16px; margin-bottom: 14px; }
+  .hero .contact { font-size: 16px; }
+  .hero .social { margin-top: 14px; }
+  .copyright { width: 100%; left: 0; }
+  .cv .text { margin: 0; width: auto; }
+  .ko .cv .text { font-size: 15px; line-height: 18px; }
+  .en .cv .text { font-size: 16px; line-height: 20px; }
+  .gallery { width: calc(100% - 40px); margin: 0 20px; }
+  .g-item { position: relative; left: 0 !important; top: 0 !important; width: 100% !important; margin-bottom: 20px; }
+  .g-info { height: auto; max-height: none; font-size: 15px; line-height: 20px; }
+  .lb-stage { left: 10px; right: 10px; }
+  .lb .lb-prev, .lb .lb-next { display: none; }
+  .lb-stage { bottom: 200px; }
+  .lb-cap { top: calc(100% - 180px); font-size: 15px; line-height: 20px; }
+}
