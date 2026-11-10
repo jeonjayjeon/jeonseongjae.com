@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Builds the static jeonseongjae.com site into ../site from content in this folder.
 Edit album.json or the CV/HOME blocks below, then run:  python3 src/build.py"""
-import json, html, os, pathlib
+import json, html, os, pathlib, re
 
 ROOT = pathlib.Path(__file__).resolve().parent
 OUT = ROOT.parent
@@ -290,7 +290,18 @@ def album(lang):
 </div>
 """ + FOOT
 
+def rel(text, path):
+    """Root-absolute links -> relative, so the site works at a domain root and under a sub-path."""
+    depth = len([x for x in path.strip("/").split("/") if x])
+    pre = "../" * depth or "./"
+    text = text.replace('"/assets/', f'"{pre}assets/')
+    def fix(m):
+        t = m.group(2).strip("/")
+        return f'{m.group(1)}="{pre}{t + "/" if t else ""}"'
+    return re.sub(r'(href)="(/(?:ko)?(?:/?cv|/?career-album)?)"', fix, text)
+
 def write(path, text):
+    text = rel(text, path)
     p = OUT / path.lstrip("/") / "index.html"
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(text)

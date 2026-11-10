@@ -1,14 +1,11 @@
 # jeonseongjae.com: Wix 없이 만든 정적 사이트
 
-## 폴더 구성
-- site/: 실제로 배포하는 폴더입니다. 순수 HTML, CSS, JS로 되어 있고 빌드 과정이 필요 없습니다.
-  - index.html, cv/, career-album/: 영문 페이지 (Wix와 같은 경로)
-  - ko/, ko/cv/, ko/career-album/: 국문 페이지
-  - assets/: CSS, JS, 이미지, 영상, 폰트
-  - download-assets.sh: Wix에 올라가 있는 사진·영상·폰트를 assets로 내려받는 스크립트
-- src/: 내용을 수정할 때 쓰는 원본 파일입니다.
-  - album.json: Career Album 사진과 캡션 (국문/영문)
-  - build.py: 메인·CV 텍스트와 페이지 템플릿. 실행하면 site/를 다시 생성합니다.
+## 폴더 구성 (GitHub Pages: main 브랜치 루트를 그대로 서비스)
+- index.html, cv/, career-album/: 영문 페이지 (Wix와 같은 경로)
+- ko/, ko/cv/, ko/career-album/: 국문 페이지
+- assets/: CSS, JS, 이미지, 영상, 폰트 (GitHub Actions로 Wix에서 내려받아 커밋됨)
+- _src/: 내용 수정용 원본. album.json(앨범 캡션), build.py(메인·CV 텍스트와 템플릿)
+- download-assets.sh, .github/workflows/fetch-assets.yml: Wix 자산 백업용
 
 ## 처음 한 번만 실행
 ```
@@ -19,7 +16,7 @@ python3 -m http.server 8000  # 내려받은 뒤 http://localhost:8000 에서 확
 주의: 페이지 경로가 /ko, /cv 같은 루트 기준이라 파일을 더블클릭해서 열면 깨집니다. 반드시 로컬 서버나 배포한 주소에서 확인하십시오.
 
 ## 내용 수정
-src/album.json 또는 src/build.py의 텍스트를 고친 뒤 `python3 src/build.py`를 실행합니다.
+_src/album.json 또는 _src/build.py를 고친 뒤 `python3 _src/build.py`를 실행하고 커밋·푸시하면 GitHub Pages에 자동 반영됩니다.
 
 ## 배포
 site 폴더를 Netlify, Cloudflare Pages, GitHub Pages, Vercel 중 한 곳에 올리고 jeonseongjae.com 도메인 DNS를 연결합니다.
